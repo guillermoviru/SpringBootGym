@@ -19,7 +19,28 @@ public class Usuario {
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
+    @Column(name = "inscrito")
+    @ColumnDefault("null") // Esto establece el valor predeterminado en null
+    private Boolean inscrito;
 
+    @Column(name = "altura")
+    @ColumnDefault("null") // Esto establece el valor predeterminado en null
+    private Double altura;
+
+    @Column(name = "edad")
+    @ColumnDefault("null") // Esto establece el valor predeterminado en null
+    private int edad;
+    // Relación con la clase Genero
+    @ManyToOne
+    @JoinColumn(name = "genero_id", nullable = false)
+    private Genero genero;
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
     public Boolean getInscrito() {
         return inscrito;
     }
@@ -27,11 +48,6 @@ public class Usuario {
     public void setInscrito(Boolean inscrito) {
         this.inscrito = inscrito;
     }
-
-    @Column(name = "inscrito")
-    @ColumnDefault("null") // Esto establece el valor predeterminado en null
-    private Boolean inscrito;
-
 
     public Long getId() {
         return id;
