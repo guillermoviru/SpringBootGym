@@ -1,5 +1,6 @@
 package com.gym.springbootgym.Clases;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 
 @Entity
@@ -8,7 +9,8 @@ public class Genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "nombreGenero" )
+    @ColumnDefault("null")
     private String nombreGenero;
 
     // Constructor, getters y setters

@@ -2,8 +2,11 @@ package com.gym.springbootgym.Clases;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 //Clase Usuario
+
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 public class Usuario {
     @Id
@@ -23,17 +26,60 @@ public class Usuario {
     @ColumnDefault("null") // Esto establece el valor predeterminado en null
     private Boolean inscrito;
 
+
+
     @Column(name = "altura")
     @ColumnDefault("null") // Esto establece el valor predeterminado en null
     private Double altura;
 
-    @Column(name = "edad")
+    @Column(name = "peso")
     @ColumnDefault("null") // Esto establece el valor predeterminado en null
-    private int edad;
+    private Double peso;
+
+    @Column(name = "edad", columnDefinition = "int default 0")
+    private Integer edad;
+
     // Relación con la clase Genero
     @ManyToOne
-    @JoinColumn(name = "genero_id", nullable = false)
+    @JoinColumn(name = "genero_id")
+    @ColumnDefault("null")
     private Genero genero;
+
+    @ManyToOne
+    @JoinColumn(name = "meta_id")
+    @ColumnDefault("null")
+    private Meta meta;
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public Double getAltura() {
+        return altura;
+    }
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+    public void setAltura(Double altura) {
+        this.altura = altura;
+    }
+
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
     public Genero getGenero() {
         return genero;
     }
